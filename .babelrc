@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+    //"transform-react-jsx" //babel-preset-react 已经包含这个
+  ]
+}
