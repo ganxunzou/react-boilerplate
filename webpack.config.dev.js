@@ -12,16 +12,20 @@ const config = {
   devtool: 'inline-source-map',
   devServer: {
      contentBase: './dist',
-     hot: true
+     hot: true,
+     port:3000,
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+  }),
     new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './template/index_dev.html',
-      title: 'react',
+      title: 'react-bilerplate-dev',
       // chunks: ['app'], //指定要加入的entry实例,
       'inject': 'body',
       "env": "development"
