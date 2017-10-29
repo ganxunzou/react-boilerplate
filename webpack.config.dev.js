@@ -6,8 +6,11 @@ const CommonCfg = require('./webpack.common.config')
 
 const config = {
   entry: [
+    'webpack-hot-middleware/client?reload=true',
     'react-hot-loader/patch',
+    'webpack/hot/only-dev-server',
     './src/index.jsx',
+    
   ],
   devtool: 'inline-source-map',
   devServer: {
@@ -27,8 +30,7 @@ const config = {
       template: './template/index_dev.html',
       title: 'react-bilerplate-dev',
       // chunks: ['app'], //指定要加入的entry实例,
-      'inject': 'body',
-      "env": "development"
+      'inject': 'body'
   }),
   ],
   

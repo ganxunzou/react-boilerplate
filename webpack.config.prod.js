@@ -35,6 +35,7 @@ var config = {
             "env": "production"
         }),
         new webpack.HashedModuleIdsPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
     ],
     module: {
         rules: [
