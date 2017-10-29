@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const CommonCfg = require('./webpack.common.config')
 
 const config = {
   entry: [
@@ -18,10 +17,17 @@ const config = {
      hot: true,
      port:3000,
   },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
-  }),
+    }),
     new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -31,15 +37,23 @@ const config = {
       title: 'react-bilerplate-dev',
       // chunks: ['app'], //指定要加入的entry实例,
       'inject': 'body'
-  }),
+     }),
   ],
-  
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  }
+  module: {
+    rules: [
+        { test: /\.(js|jsx)$/, use: "babel-loader" , exclude: /node_modules/},
+        { test: /\.css$/, use: [
+            "style-loader",
+            "css-loader"
+        ]},
+        { test: /\.less$/, use:[
+            "style-loader",
+            "css-loader",
+            "less-loader"
+        ] },
+        { test: /\.(eot|woff|woff2|svg|ttf|png|jpg|jpeg)(\?v=[\d\.]+)?$/,use: 'url-loader?limit=10000&name=/imgs/[name].[ext]'}
+      ]
+  },
 };
 
-const cfg = Object.assign(CommonCfg,config);
-
-module.exports = cfg;
+module.exports = config;

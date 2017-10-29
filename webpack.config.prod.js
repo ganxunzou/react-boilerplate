@@ -2,17 +2,19 @@
  * Created by KJ on 2016/3/10.
  */
 
-var WebpackCfg = require('./webpack.common.config.js');
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = {
     entry: {
+        vendor:['react','react-dom'],
         "app": [
             './src/index.jsx'
         ]
     },
+    // 改用 CommonsChunkPlugin 插件
     // externals: {
     //     'react': 'React',
     //     'react-dom': 'ReactDOM'
@@ -22,10 +24,20 @@ var config = {
         filename: "[name].bundle.js",
         publicPath: "./"
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     plugins: [
+        //定义全局变量
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
+        //抽离出公共模块到独立的js
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",//对应 entry 
+            filename: "[name].bundle.js",
+            minChunks: Infinity
+          }),        
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './template/index.html',
@@ -54,6 +66,4 @@ var config = {
     },
 };
 
-Object.assign(WebpackCfg, config);
-
-module.exports = WebpackCfg;
+module.exports = config;
