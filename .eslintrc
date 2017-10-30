@@ -46,6 +46,7 @@
     "react/jsx-filename-extension": "off",
     "no-restricted-syntax": "off",
     "linebreak-style":"off",
-    "object-curly-newline":"off"
+    "object-curly-newline":"off",
+    "guard-for-in":"off"
   }
 }

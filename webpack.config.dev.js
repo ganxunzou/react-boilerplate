@@ -1,7 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractLESS = new ExtractTextPlugin('[name].css');
+
 
 const config = {
   entry: [
@@ -24,42 +27,53 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  module: {
+    rules: [
+      { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
+      {
+        test: /\.css$/i,
+        use: extractLESS.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          }],
+        }),
+      },
+      { test: /\.(eot|woff|woff2|svg|ttf|png|jpg|jpeg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 20, // 20K
+              fallback: 'file-loader', // default
+              name: '[path][name]-[hash:8].[ext]',
+              // publicPath: 'assets/',
+              outputPath: './imgs/',
+              useRelativePath: false, // true : outputPath 失效
+            },
+          }],
+      },
+    ],
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-    new CleanWebpackPlugin(['dist']),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './template/index_dev.html',
-      title: 'react-bilerplate-dev',
+      title: 'react-boilerplate-dev',
       // chunks: ['app'], //指定要加入的entry实例,
       inject: 'body',
     }),
+    extractLESS,
   ],
-  module: {
-    rules: [
-      { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ],
-      },
-      { test: /\.(eot|woff|woff2|svg|ttf|png|jpg|jpeg)(\?v=[\d\.]+)?$/, use: 'url-loader?limit=10000&name=/imgs/[name].[ext]' },
-    ],
-  },
 };
 
 module.exports = config;
