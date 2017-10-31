@@ -26,6 +26,7 @@ const config = {
     filename: '[name]-[chunkhash:8].bundle.js',
     publicPath: './',
     // sourceMapFilename: '[name]-[chunkhash:8].bundle.map',
+    // devtoolModuleFilenameTemplate: "webpack:///[resource-path]?[loaders]"
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -81,12 +82,12 @@ const config = {
       inject: 'body',
     }),
     new UglifyJSPlugin({
-      compress: {
+      sourceMap: true,
+      uglifyOptions: {
         warnings: false,
       },
-      sourceMap: true,
-      mangle: true,
     }),
+    // extractCSS,// 用到CSS的化，加上这个
     extractCSS,
     new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
@@ -94,7 +95,7 @@ const config = {
       hashDigestLength: 10,
     }),
     new webpack.SourceMapDevToolPlugin({
-      filename: '[name]-[chunkhash:8].bundle.map',
+      filename: '[file].map',//请注意这里，不能写成[name].js.map,这种方式生成的map文件是个空文件
       exclude: ['vendor'],
     }),
   ],

@@ -14,7 +14,7 @@ const config = {
     './src/index.jsx',
 
   ],
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: './dist',
     hot: true,
@@ -23,6 +23,8 @@ const config = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].bundle.js',
+    // sourceMapFilename: '[name].js.map',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -60,10 +62,10 @@ const config = {
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-    }),
-    new webpack.NamedModulesPlugin(),
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify('development'),
+    // }),
+    // new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
