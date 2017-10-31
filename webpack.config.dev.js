@@ -14,7 +14,7 @@ const config = {
     './src/index.jsx',
 
   ],
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   devServer: {
     contentBase: './dist',
     hot: true,

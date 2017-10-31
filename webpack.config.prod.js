@@ -6,8 +6,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-const extractLESS = new ExtractTextPlugin('[name]-[contenthash:8].css');
+const extractCSS = new ExtractTextPlugin('[name]-[contenthash:8].css');
 
 const config = {
   entry: {
@@ -19,10 +20,12 @@ const config = {
   //     'react': 'React',
   //     'react-dom': 'ReactDOM'
   // },
+  devtool: 'source-map',
   output: {
     path: `${__dirname}/dist`,
     filename: '[name]-[chunkhash:8].bundle.js',
     publicPath: './',
+    sourceMapFilename: '[name]-[chunkhash:8].bundle.map',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -32,7 +35,7 @@ const config = {
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
       {
         test: /\.css$/i,
-        use: extractLESS.extract({
+        use: extractCSS.extract({
           use: [{
             loader: 'css-loader',
             options: {
@@ -77,9 +80,15 @@ const config = {
       // chunks: ["App", 'vendor'], // 指定要加入的entry实例,
       inject: 'body',
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJSPlugin({
+      compress: {
+        warnings: false,
+      },
+      sourceMap: true,
+      mangle: true,
+    }),
     // extractCSS,// 用到CSS的化，加上这个
-    extractLESS,
+    extractCSS,
     new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
