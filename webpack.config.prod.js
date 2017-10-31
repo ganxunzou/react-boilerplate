@@ -20,12 +20,12 @@ const config = {
   //     'react': 'React',
   //     'react-dom': 'ReactDOM'
   // },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   output: {
     path: `${__dirname}/dist`,
     filename: '[name]-[chunkhash:8].bundle.js',
     publicPath: './',
-    sourceMapFilename: '[name]-[chunkhash:8].bundle.map',
+    // sourceMapFilename: '[name]-[chunkhash:8].bundle.map',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -87,12 +87,15 @@ const config = {
       sourceMap: true,
       mangle: true,
     }),
-    // extractCSS,// 用到CSS的化，加上这个
     extractCSS,
     new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 10,
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[name]-[chunkhash:8].bundle.map',
+      exclude: ['vendor'],
     }),
   ],
 
