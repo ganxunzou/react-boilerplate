@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # react-boilerplate
 
 React16 + Babel(ES6) + Webpack3 集成开发环境模板工程。内部使用react-hot-loader 实现react开发热更新。
@@ -21,3 +22,7 @@ React16 + Babel(ES6) + Webpack3 集成开发环境模板工程。内部使用rea
     npm run build
 ```
 
+=======
+# react-router-boilerplate
+react-router-boilerplate
+>>>>>>> d77294ece98bdb72299863644b35fe47bfcb0431

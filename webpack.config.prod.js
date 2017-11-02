@@ -65,9 +65,11 @@ const config = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     // 定义全局变量
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+   new webpack.DefinePlugin({
+	  'process.env': {
+		NODE_ENV: JSON.stringify('production')
+	  }
+	}),
     // 抽离出公共模块到独立的js
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor', // 对应 entry
