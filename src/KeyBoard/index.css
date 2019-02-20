@@ -1,0 +1,88 @@
+.keyboardContainer {
+  height: 3.1rem;
+  position: fixed;
+  top: 0;
+  z-index: 9999999;
+  background: #dfe4eb;
+  width: 100%;
+}
+
+.keyboardTitle {
+  height: 0.45rem;
+  line-height: 0.45rem;
+  background: #f5f6f7;
+  font-size: 0.16rem;
+  text-align: center;
+  margin-bottom: 0.04rem;
+  color: #486b98;
+}
+
+.line10 {
+  height: 0.52rem;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0 0.02rem;
+}
+.line10 li {
+  flex: 1;
+  width: 0.33rem;
+  height: 0.44rem;
+  line-height: 0.44rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 0.18rem;
+  margin: 0.02rem;
+  color: #00377a;
+}
+.line10 li:active {
+  background: #bfc9d7;
+}
+
+.keyboardBottom {
+  height: 0.52rem;
+  list-style: none;
+  display: flex;
+}
+.keyboardBottom li {
+  height: 0.44rem;
+  line-height: 0.44rem;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 0.16rem;
+  margin: 0.02rem;
+}
+.keyboardSpace {
+  background: #fff;
+}
+.keyboardSpace:active {
+  background: #bfc9d7;
+}
+/* .keyboardBottom li:active {
+  background: #bfc9d7;
+} */
+.keyboardSwitch {
+  background: #bfc9d7;
+}
+.keyboardSwitch:active {
+  background: #fff;
+}
+
+.keyboardShift {
+  background: #bfc9d7 !important;
+}
+.keyboardShift:active {
+  background: #fff !important;
+}
+.keyboardShiftDisabled {
+  color: #ddd !important;
+  background: #bfc9d7 !important;
+}
+.keyboardBackspace {
+  background: #bfc9d7 !important;
+}
+
+.keyboardBackspace:active {
+  background: #fff !important;
+}

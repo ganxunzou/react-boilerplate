@@ -1,23 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import Header from './header';
-import Body from './body';
-import Footer from './footer';
+import React, { Component } from 'react';
 import style from './App.css';
+import KeyBoard from './KeyBoard';
 
 class App extends Component {
   render() {
     return (
-            <div className={style.main}>
-                <Header />
-                <Body />
-                <Footer />
-            </div>
+			<div className={style.main}>
+				<KeyBoard />
+			</div>
     );
   }
 }
-
-App.propTypes = {
-
-};
 
 export default App;

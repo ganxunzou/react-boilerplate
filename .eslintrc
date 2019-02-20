@@ -1,14 +1,14 @@
 {
   //使用ESLint推荐扩展
-  "extends":"airbnb",
+  "extends": "airbnb",
   //指定解析器parser
   "parser": "babel-eslint",
   //环境
   "env": {
     "browser": true,
-    "node":true,
-    "commonjs":true,
-    "es6":true
+    "node": true,
+    "commonjs": true,
+    "es6": true
   },
   //全局变量
   "globals": {
@@ -16,8 +16,8 @@
     "React": true
   },
   //解析参数
-  "parserOptions":{
-    "ecmaVersion": 6,//执行ecmascript版本
+  "parserOptions": {
+    "ecmaVersion": 6, //执行ecmascript版本
     //"sourceType": "module",//源码所在位置
     "ecmaFeatures": {
       "jsx": true
@@ -25,12 +25,8 @@
     }
   },
   //插件
-  "plugins":[
-    "react"
-  ],
-  "settings": {
-
-  },
+  "plugins": ["react"],
+  "settings": {},
   //规则
   "rules": {
     "global-require": "off",
@@ -45,8 +41,11 @@
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-filename-extension": "off",
     "no-restricted-syntax": "off",
-    "linebreak-style":"off",
-    "object-curly-newline":"off",
-    "guard-for-in":"off"
+    "linebreak-style": "off",
+    "object-curly-newline": "off",
+    "guard-for-in": "off",
+    "no-tabs": "off",
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0
   }
 }

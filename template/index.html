@@ -6,17 +6,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
-        function onload() {
-            document.body.style.height = window.innerHeight + "px";
-        }
-
-        function onresize() {
-            onload();
-        }
+        (function(doc, win) {
+        var docEle = doc.documentElement,
+          evt =
+            "onorientationchange" in window ? "orientationchange" : "resize",
+          fn = function() {
+            var width = docEle.clientWidth;
+            // 100 初始化rem ，375 为设备逻辑像素
+            width && (docEle.style.fontSize = 100 * (width / 375) + "px");
+          };
+        win.addEventListener(evt, fn, false);
+        doc.addEventListener("DOMContentLoaded", fn, false);
+      })(document, window);
     </script>
 </head>
 
-<body onload="onload()" onresize="onresize()" style="overflow: hidden;">
+<body>
     <div id="app" style="width: 100%; height: 100%"></div>
 </body>
 
