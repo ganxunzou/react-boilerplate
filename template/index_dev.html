@@ -3,7 +3,11 @@
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <script src="/jquery.js"></script>
     <script type="text/javascript">
       (function(doc, win) {
         var docEle = doc.documentElement,
@@ -19,7 +23,7 @@
       })(document, window);
     </script>
   </head>
-  <body >
-    <div id="app"></div>
+  <body>
+    <div id="app" style="position:absolute; top:0"></div>
   </body>
 </html>

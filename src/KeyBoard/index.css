@@ -1,7 +1,7 @@
 .keyboardContainer {
   height: 3.1rem;
   position: fixed;
-  top: 0;
+  bottom: 0;
   z-index: 9999999;
   background: #dfe4eb;
   width: 100%;
